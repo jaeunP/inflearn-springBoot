@@ -2,7 +2,7 @@ package spring.introduction.domain;
 
 public class Member {
     private Long id;
-    public  String name;
+    private  String name;
 
     public Long getId() {
         return id;
