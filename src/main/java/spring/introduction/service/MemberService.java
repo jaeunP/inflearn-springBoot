@@ -1,5 +1,6 @@
 package spring.introduction.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import spring.introduction.domain.Member;
 import spring.introduction.repository.MemberRepository;
 
@@ -7,6 +8,7 @@ import spring.introduction.repository.MemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
