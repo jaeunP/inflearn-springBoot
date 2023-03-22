@@ -27,6 +27,7 @@ public class MemberServiceTest {
 
         //When
         Long saveId = memberService.join(member);
+
         //Then
         assertEquals(member, memberRepository.findOne(saveId));
     }
@@ -38,13 +39,13 @@ public class MemberServiceTest {
         member1.setName("kim");
         Member member2 = new Member();
         member2.setName("kim");
+
         //When
         memberService.join(member1);
-        assertThrows(IllegalStateException.class, () -> {
-            memberService.join(member2);
-            });
 
         //Then
-//        fail("예외가 발생해야 한다");
+        assertThrows(IllegalStateException.class, () -> {
+            memberService.join(member2);
+        });
     }
 }
