@@ -48,6 +48,20 @@ public class OrderSimpleApiController {
         return result;
     }
 
+    @GetMapping("/api/v3/simple-orders")
+    public List<SimpleOrderDto> orderV3() {
+        List<Order> orders =orderRepository.findAllWitMemberDelivery();
+        List<SimpleOrderDto> result = orders.stream()
+                .map(o -> new SimpleOrderDto(o))
+                .collect(toList());
+        return result;
+    }
+
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDto> orderV4() {
+        return orderRepository.findOrderDtos();
+    }
+
     @Data
     static class SimpleOrderDto {
         private Long orderId;
@@ -63,4 +77,5 @@ public class OrderSimpleApiController {
             address = order.getDelivery().getAddress(); //LAZY 초기화
         }
     }
+
 }
