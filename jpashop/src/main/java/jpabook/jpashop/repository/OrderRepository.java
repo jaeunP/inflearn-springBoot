@@ -103,20 +103,6 @@ public class OrderRepository {
         ).getResultList();
     }
 
-    /**
-     * v3에 비해 재사용성이 떨어짐
-     * Entity가 아닌 Dto기 때문에 데이터 변경할 수가 없음
-     * 성능 자체는 v4가 좀 더 최적화
-     */
-    public List<OrderSimpleQueryDto> findOrderDtos() {
-        return em.createQuery(
-                        "select new jpabook.jpashop.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
-                                "from Order o" +
-                                " join o.member m" +
-                                " join o.delivery d", OrderSimpleQueryDto.class)
-                .getResultList();
-    }
-
     public List<Order> findAllWithItem() {
         return em.createQuery(
                         "select distinct o from Order o " +
