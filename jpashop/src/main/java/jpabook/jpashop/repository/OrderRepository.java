@@ -2,14 +2,14 @@ package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
 
+import jpabook.jpashop.repository.order.custom.OrderRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
-
-    List<Order> findAllByMemberName(OrderSearch orderSearch);
+public interface OrderRepository extends
+        JpaRepository<Order, Long>, OrderRepositoryCustom {
 
     @Query("SELECT distinct o from Order o" +
             " join fetch o.member m" +
