@@ -6,5 +6,5 @@ import jpabook.jpashop.repository.OrderSearch;
 import java.util.List;
 
 public interface OrderRepositoryCustom {
-    List<Order> findAllByString(OrderSearch orderSearch);
+    List<Order> findAll_dsl(OrderSearch orderSearch);
 }
