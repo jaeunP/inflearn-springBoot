@@ -12,6 +12,7 @@ import java.util.List;
 
 import static jpabook.jpashop.domain.QMember.member;
 import static jpabook.jpashop.domain.QOrder.order;
+import static jpabook.jpashop.domain.QOrderItem.orderItem;
 
 
 public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
@@ -38,6 +39,29 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
                 .limit(1000)
                 .fetch();
     }
+
+    @Override
+    public List<Order> findAllWithItem() {
+        return query
+                .select(order).distinct()
+                .from(order)
+                .join(order.member)
+                .join(order.delivery)
+                .join(order.orderItems)
+                .join(order.orderItems, orderItem)
+                .fetch();
+    }
+
+    @Override
+    public List<Order> findAllWitMemberDelivery(int offset, int limit) {
+        return query
+                .select(order)
+                .from(order)
+                .join(order.member)
+                .join(order.delivery)
+                .fetch();
+    }
+
 
     private BooleanExpression statusEq(OrderStatus statusCond) {
         if (statusCond == null) {
