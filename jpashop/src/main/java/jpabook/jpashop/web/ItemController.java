@@ -1,11 +1,10 @@
-package jpabook.jpashop.controller;
+package jpabook.jpashop.web;
 
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
-import lombok.Getter;
+import jpabook.jpashop.web.BookForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
